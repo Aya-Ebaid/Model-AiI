@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MedAI — نموذج واجهة</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header">
+    <h1>Model AI — مساعد تشخيصي </h1>
+    <p class="tag">نسخة تجربة تصميمية للتفاعل بين المريض والطبيب</p>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>معلومات المريض</h2>
+      <label>الاسم:
+        <input id="patientName" type="text" placeholder="أدخل اسمك" />
+      </label>
+
+      <label>الأعراض (بإيجاز):
+        <textarea id="symptoms" rows="4" placeholder="مثال: سعال جاف، ضيق في التنفس، حرارة"></textarea>
+      </label>
+
+      <label class="file-label">
+        رفع صورة أشعة (اختياري)
+        <input id="xray" type="file" accept="image/*" />
+      </label>
+
+      <div id="previewWrap" class="preview-wrap hidden">
+        <span>معاينة الأشعة:</span>
+        <img id="preview" alt="X-ray preview" />
+      </div>
+
+      <div class="actions">
+        <button id="analyzeBtn" class="btn primary">اطلب تحليل</button>
+        <button id="clearBtn" class="btn">مسح الحقول</button>
+      </div>
+    </section>
+
+    <section class="card results">
+      <h2>النتيجة (AI)</h2>
+      <div id="status" class="muted">لم يتم إجراء تحليل بعد.</div>
+
+      <div id="aiResult" class="ai-result hidden">
+        <h3>تشخيص مبدئي</h3>
+        <p id="diagText"></p>
+
+        <h3>اقتراح علاج</h3>
+        <p id="treatmentText"></p>
+
+        <div class="small-muted">سيتم إرسال الحالة لمراجعة الطبيب.</div>
+      </div>
+    </section>
+
+    <section class="card doctor">
+      <h2>لوحة الطبيب</h2>
+      <div id="caseList">
+        <div class="muted">لا توجد حالات قيد المراجعة.</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Doctor review modal -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-card">
+      <h3>مراجعة حالة المريض</h3>
+      <div><strong>المريض:</strong> <span id="mName"></span></div>
+      <div><strong>الأعراض:</strong> <div id="mSymptoms"></div></div>
+
+      <div class="modal-section">
+        <label>تشخيص AI المقترح:
+          <input id="doctorDiag" />
+        </label>
+
+        <label>اقتراح علاج (قابل للتعديل):
+          <textarea id="doctorTreat" rows="4"></textarea>
+        </label>
+      </div>
+
+      <div class="modal-actions">
+        <button id="approveBtn" class="btn primary">وافق</button>
+        <button id="rejectBtn" class="btn danger">رفض</button>
+        <button id="closeBtn" class="btn">إغلاق</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <small>ملاحظة: هذا نموذج تعليمي. لا تعتمد عليه للتشخيص الطبي.</small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
